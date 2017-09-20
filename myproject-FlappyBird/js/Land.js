@@ -1,0 +1,29 @@
+/**
+ * Created by duanlianxin on 2017/9/1.
+ */
+(function(){
+    var Land=window.Land=function(){
+        //大地背景
+        this.image=game.R.land;
+        //图片的位置
+        this.y=game.canvas.height*0.75;
+        this.x=0;
+        this.w=336;
+    }
+    //更新
+    Land.prototype.update=function(){
+            this.x-=2;
+        if(this.x<-336){
+            this.x=0
+        }
+    }
+    //渲染
+    Land.prototype.render=function(){
+        game.ctx.drawImage(this.image,this.x,this.y);
+        game.ctx.drawImage(this.image,this.x+this.w,this.y);
+        game.ctx.drawImage(this.image,this.x+this.w*2,this.y);
+        //大地空余填充
+        game.ctx.fillStyle="#DED895";
+        game.ctx.fillRect(0,this.y+112,game.canvas.width,game.canvas.height)
+    }
+})()
